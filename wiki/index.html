@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude 자동화 위키 — SC 사업본부 2그룹</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f8f9fa;
+      --bg-card: #ffffff;
+      --border: #e5e7eb;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --text-light: #9ca3af;
+      --accent: #6366f1;
+      --accent-soft: #eef2ff;
+      --sidebar-w: 240px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif;
+      background: var(--bg-soft);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      overflow-y: auto;
+      padding: 24px 0;
+      z-index: 100;
+    }
+
+    .sidebar-logo {
+      padding: 0 20px 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .sidebar-logo .badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .sidebar-logo h1 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .sidebar-section { margin-bottom: 8px; }
+    .sidebar-section-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 20px 6px;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: all .15s;
+    }
+    .sidebar-link:hover { color: var(--accent); background: var(--accent-soft); }
+    .sidebar-link.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+    .sidebar-link .icon { font-size: 14px; }
+
+    .sidebar-footer {
+      padding: 16px 20px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 16px;
+    }
+    .sidebar-footer a {
+      font-size: 12px;
+      color: var(--text-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sidebar-footer a:hover { color: var(--accent); }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 48px 64px;
+      max-width: calc(860px + var(--sidebar-w));
+    }
+
+    /* ── SECTION ── */
+    .wiki-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 32px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .section-lead {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 660px;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ── CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .info-card .card-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .info-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .info-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── PROJECT BLOCK ── */
+    .project-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .project-meta { flex: 1; }
+    .project-name { font-size: 17px; font-weight: 800; }
+    .project-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .project-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .project-body { padding: 24px; }
+    .project-body h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+    .project-body h4:first-child { margin-top: 0; }
+    .project-body p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .tag {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .step-list { display: flex; flex-direction: column; gap: 10px; }
+    .step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .step-text strong { color: var(--text); }
+
+    /* highlight box */
+    .highlight-box {
+      background: var(--accent-soft);
+      border: 1px solid #c7d2fe;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #4338ca;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+    .highlight-box strong { font-weight: 700; }
+
+    /* persona card */
+    .persona-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 12px;
+    }
+    .persona-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .persona-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .persona-role { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+    .persona-traits { display: flex; flex-wrap: wrap; gap: 5px; }
+    .trait { font-size: 11px; padding: 2px 8px; border-radius: 5px; }
+
+    /* quote */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 10px 16px;
+      margin: 12px 0;
+      background: var(--accent-soft);
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      color: #4338ca;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* table */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+    th {
+      background: var(--bg-soft);
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    td strong { color: var(--text); }
+    tr:last-child td { border-bottom: none; }
+
+    /* colors per project */
+    .c-blue   { background:#eff6ff; color:#1d4ed8; }
+    .c-red    { background:#fef2f2; color:#b91c1c; }
+    .c-green  { background:#f0fdf4; color:#15803d; }
+    .c-orange { background:#fff7ed; color:#c2410c; }
+    .c-purple { background:#faf5ff; color:#7e22ce; }
+
+    .icon-blue   { background:#dbeafe; }
+    .icon-red    { background:#fee2e2; }
+    .icon-green  { background:#dcfce7; }
+    .icon-orange { background:#ffedd5; }
+    .icon-purple { background:#f3e8ff; }
+
+    .tag-blue   { background:#dbeafe; color:#1d4ed8; }
+    .tag-red    { background:#fee2e2; color:#b91c1c; }
+    .tag-green  { background:#dcfce7; color:#15803d; }
+    .tag-orange { background:#ffedd5; color:#c2410c; }
+    .tag-purple { background:#f3e8ff; color:#7e22ce; }
+
+    .avatar-blue   { background:#dbeafe; }
+    .avatar-green  { background:#dcfce7; }
+    .avatar-orange { background:#ffedd5; }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 32px 24px; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="badge">Claude 자동화 위키</div>
+    <h1>SC 사업본부 2그룹<br>업무 자동화 가이드</h1>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">시작하기</div>
+    <a href="#intro" class="sidebar-link"><span class="icon">📖</span> 이 위키는</a>
+    <a href="#how" class="sidebar-link"><span class="icon">⚙️</span> 작동 방식</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">자동화 프로젝트</div>
+    <a href="#confluence" class="sidebar-link"><span class="icon">📄</span> Confluence</a>
+    <a href="#gmail" class="sidebar-link"><span class="icon">📧</span> Gmail Bot</a>
+    <a href="#slack" class="sidebar-link"><span class="icon">💬</span> Slack Bot</a>
+    <a href="#myinfo" class="sidebar-link"><span class="icon">🧠</span> 페르소나</a>
+    <a href="#query" class="sidebar-link"><span class="icon">🗄️</span> Query</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">활용</div>
+    <a href="#usecases" class="sidebar-link"><span class="icon">✅</span> 할 수 있는 것들</a>
+  </div>
+
+  <div class="sidebar-footer">
+    <a href="../">← 프로젝트 구조도</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- INTRO -->
+  <section class="wiki-section" id="intro">
+    <div class="section-eyebrow">소개</div>
+    <h2 class="section-title">이 위키는 무엇인가요?</h2>
+    <p class="section-lead">
+      SC 사업본부 2그룹에서 <strong>Claude(AI)</strong>를 활용해 구축한 업무 자동화 시스템을 설명합니다.
+      Confluence 문서 작성, Gmail 요약, Slack 메시지 발송, 데이터 쿼리까지 —
+      반복적인 업무를 Claude가 대신 처리합니다.
+    </p>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-eyebrow">대상</div>
+        <h3>누가 읽으면 좋나요?</h3>
+        <p>팀 내 구성원뿐 아니라 이 시스템이 어떻게 동작하는지 궁금한 누구든 읽을 수 있습니다. 개발 지식이 없어도 이해할 수 있게 작성했습니다.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-eyebrow">핵심</div>
+        <h3>한 줄 요약</h3>
+        <p>Claude Code를 최상위 폴더에 지정해두면, 아래 5개 자동화 프로젝트가 유기적으로 연결되어 작동합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- HOW IT WORKS -->
+  <section class="wiki-section" id="how">
+    <div class="section-eyebrow">작동 방식</div>
+    <h2 class="section-title">어떻게 연결되어 있나요?</h2>
+    <p class="section-lead">5개 프로젝트는 독립적으로도 동작하지만, 서로 데이터를 주고받으며 더 정교한 자동화를 만들어냅니다.</p>
+
+    <div class="project-block">
+      <div class="project-body">
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>My Info</strong>가 정승혁의 Confluence 문서 154개와 Slack 채팅 83,560건을 분석해 페르소나를 구축합니다.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Query</strong>가 라이브 DB에서 필요한 데이터(매출, 플레이 지표, AB 테스트 결과)를 추출합니다.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Confluence</strong>가 분석 결과를 바탕으로 기획 문서를 자동 생성합니다.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>Slack Bot</strong>이 채널 유형에 맞는 말투로 메시지를 자동 발송합니다.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-text"><strong>Gmail Bot</strong>이 수신 메일을 요약해 Slack으로 전달합니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONFLUENCE -->
+  <section class="wiki-section" id="confluence">
+    <div class="section-eyebrow">프로젝트 1</div>
+    <h2 class="section-title">Confluence 문서 자동화</h2>
+    <p class="section-lead">Confluence에 직접 문서를 쓰는 대신, 필요한 내용을 말하면 Claude가 정승혁 스타일의 기획 문서를 자동으로 생성합니다.</p>
+
+    <div class="project-block">
+      <div class="project-header">
+        <div class="project-icon icon-blue">📄</div>
+        <div class="project-meta">
+          <div class="project-name" style="color:#1d4ed8">Confluence</div>
+          <div class="project-desc">studio-g.atlassian.net · REST API 연동</div>
+        </div>
+        <span class="project-tag c-blue">자동화 완료</span>
+      </div>
+      <div class="project-body">
+        <h4>무엇을 자동화했나요?</h4>
+        <p>Confluence 페이지 생성, 수정, 구조 잡기를 자동화했습니다. 특히 NC(신규 콘텐츠) 시리즈 문서는 항상 동일한 폴더 구조와 양식으로 생성됩니다.</p>
+
+        <h4>어떤 문서를 만들 수 있나요?</h4>
+        <table>
+          <tr><th>문서 유형</th><th>설명</th></tr>
+          <tr><td><strong>기획안</strong></td><td>NC 시리즈 기획 문서. 배경 → 목적 → 설계 → 로직 구조로 자동 생성</td></tr>
+          <tr><td><strong>UI/UX 설계서</strong></td><td>화면 설계 + 백엔드 로직 정의를 테이블 형식으로 정리</td></tr>
+          <tr><td><strong>AB 테스트 문서</strong></td><td>분기 조건, 결과 분석을 포함한 운영 문서 자동 생성</td></tr>
+          <tr><td><strong>로그/그래픽 요청서</strong></td><td>개발·디자인팀 요청 문서 자동 작성</td></tr>
+        </table>
+
+        <div class="highlight-box">
+          💡 <strong>핵심:</strong> "NC_123 큐레이션 기획안 만들어줘" 한 마디면 Confluence에 정승혁 스타일 그대로 문서가 생성됩니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- GMAIL BOT -->
+  <section class="wiki-section" id="gmail">
+    <div class="section-eyebrow">프로젝트 2</div>
+    <h2 class="section-title">Gmail Bot — 메일 자동 요약</h2>
+    <p class="section-lead">매일 수신된 Gmail을 Claude가 한국어로 요약해 Slack으로 전송합니다. 중요한 메일을 놓치지 않습니다.</p>
+
+    <div class="project-block">
+      <div class="project-header">
+        <div class="project-icon icon-red">📧</div>
+        <div class="project-meta">
+          <div class="project-name" style="color:#b91c1c">Gmail Bot</div>
+          <div class="project-desc">Gmail API (OAuth2) · Claude API 요약</div>
+        </div>
+        <span class="project-tag c-red">자동 실행 중</span>
+      </div>
+      <div class="project-body">
+        <h4>어떻게 작동하나요?</h4>
+        <div class="step-list">
+          <div class="step"><div class="step-num">1</div><div class="step-text">Windows 스케줄러가 매일 지정된 시간에 자동으로 실행</div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-text">Gmail에서 수신 메일 전체 수집</div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-text">Claude API가 각 메일을 핵심만 추려 한국어로 요약</div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-text">요약본을 지정된 Slack 채널로 자동 전송</div></div>
+        </div>
+
+        <div class="highlight-box" style="margin-top:16px">
+          💡 <strong>핵심:</strong> 매일 아침 Slack에서 어제 받은 중요 메일을 한눈에 확인할 수 있습니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SLACK BOT -->
+  <section class="wiki-section" id="slack">
+    <div class="section-eyebrow">프로젝트 3</div>
+    <h2 class="section-title">Slack Bot — 메시지 자동화</h2>
+    <p class="section-lead">채널 성격에 맞는 말투로 Slack 메시지를 자동 생성하고 발송합니다. 공식 채널은 경어체, 내부 채널은 캐주얼하게 자동 전환됩니다.</p>
+
+    <div class="project-block">
+      <div class="project-header">
+        <div class="project-icon icon-green">💬</div>
+        <div class="project-meta">
+          <div class="project-name" style="color:#15803d">Slack Bot</div>
+          <div class="project-desc">Slack Web API · 읽기/쓰기 권한</div>
+        </div>
+        <span class="project-tag c-green">자동화 완료</span>
+      </div>
+      <div class="project-body">
+        <h4>채널 유형별 말투 자동 전환</h4>
+        <table>
+          <tr><th>채널 유형</th><th>말투</th><th>예시</th></tr>
+          <tr>
+            <td><strong>공식·타팀 채널</strong></td>
+            <td>경어체, 구조적</td>
+            <td>"안녕하세요, SC 사업본부 2그룹 기획팀 정승혁입니다."</td>
+          </tr>
+          <tr>
+            <td><strong>내부 팀 채널</strong></td>
+            <td>반말, 캐주얼</td>
+            <td>"ㅋㅋ 이거 어떻게 생각해?"</td>
+          </tr>
+          <tr>
+            <td><strong>그룹장 DM</strong></td>
+            <td>극도로 공손</td>
+            <td>"시간 괜찮으실 때 확인 부탁드리겠습니다"</td>
+          </tr>
+        </table>
+
+        <h4>보유 페르소나</h4>
+        <div class="persona-card">
+          <div class="persona-avatar avatar-green">👔</div>
+          <div>
+            <div class="persona-name">정윤호 그룹장</div>
+            <div class="persona-role">SC 사업본부 2그룹장</div>
+            <div class="persona-traits">
+              <span class="trait tag-green">반말·짧고 간결</span>
+              <span class="trait tag-green">목표 중심 사고</span>
+              <span class="trait tag-green">꼼꼼한 디테일</span>
+              <span class="trait tag-green">즉각 결정</span>
+            </div>
+          </div>
+        </div>
+        <blockquote>"비결제자쪽은 확실히 좋으니까 전면적용하고 추후에 전략적으로 고민하면 될듯"</blockquote>
+
+        <div class="highlight-box">
+          💡 <strong>활용:</strong> 기획 검토 요청 시 정윤호 그룹장 말투와 사고방식으로 피드백을 받아볼 수 있습니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- MY INFO / PERSONA -->
+  <section class="wiki-section" id="myinfo">
+    <div class="section-eyebrow">프로젝트 4</div>
+    <h2 class="section-title">My Info — 정승혁 페르소나</h2>
+    <p class="section-lead">Confluence 문서 154개와 Slack 채팅 83,560건을 분석해 정승혁의 문서 작성 스타일, 말투, 업무 패턴을 학습한 페르소나입니다.</p>
+
+    <div class="project-block">
+      <div class="project-header">
+        <div class="project-icon icon-orange">🧠</div>
+        <div class="project-meta">
+          <div class="project-name" style="color:#c2410c">My Info</div>
+          <div class="project-desc">Confluence + Slack 전수 분석 기반</div>
+        </div>
+        <span class="project-tag c-orange">페르소나 구축 완료</span>
+      </div>
+      <div class="project-body">
+        <h4>어떤 데이터를 분석했나요?</h4>
+        <table>
+          <tr><th>데이터</th><th>규모</th><th>분석 내용</th></tr>
+          <tr><td><strong>Confluence 문서</strong></td><td>154개 전수</td><td>문서 구조, 헤딩 패턴, 표현 방식, NC 시리즈 양식</td></tr>
+          <tr><td><strong>Slack 채팅</strong></td><td>83,560건 (전체 워크스페이스)</td><td>채널별 말투, 업무 보고 패턴, 자주 쓰는 표현</td></tr>
+        </table>
+
+        <h4>구축된 페르소나</h4>
+        <div class="persona-card">
+          <div class="persona-avatar avatar-orange">👤</div>
+          <div>
+            <div class="persona-name">정승혁</div>
+            <div class="persona-role">SC 사업본부 2그룹 기획팀 · DUC 담당</div>
+            <div class="persona-traits">
+              <span class="trait tag-orange">꼼꼼한 실행파</span>
+              <span class="trait tag-orange">구조적 사고</span>
+              <span class="trait tag-orange">상황별 말투 전환</span>
+              <span class="trait tag-orange">선제 보고</span>
+            </div>
+          </div>
+        </div>
+
+        <h4>무엇에 활용하나요?</h4>
+        <div class="step-list">
+          <div class="step"><div class="step-num">✓</div><div class="step-text"><strong>Slack 메시지 퇴고</strong> — 작성한 메시지를 정승혁 스타일로 교정</div></div>
+          <div class="step"><div class="step-num">✓</div><div class="step-text"><strong>Confluence 문서 검토</strong> — 정승혁 스타일의 기획안 작성·보완</div></div>
+          <div class="step"><div class="step-num">✓</div><div class="step-text"><strong>기획 제안서 작성</strong> — 정승혁의 문서 양식 그대로 제안서 초안 생성</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- QUERY -->
+  <section class="wiki-section" id="query">
+    <div class="section-eyebrow">프로젝트 5</div>
+    <h2 class="section-title">Query — 데이터 분석 자동화</h2>
+    <p class="section-lead">분석 목적을 말하면 라이브 DB 구조에 맞는 SQL 쿼리를 자동으로 만들어줍니다. Redash와 SQL Workbench 모두 지원합니다.</p>
+
+    <div class="project-block">
+      <div class="project-header">
+        <div class="project-icon icon-purple">🗄️</div>
+        <div class="project-meta">
+          <div class="project-name" style="color:#7e22ce">Query</div>
+          <div class="project-desc">SQL Workbench · Redash · 라이브 DB</div>
+        </div>
+        <span class="project-tag c-purple">DB 학습 완료</span>
+      </div>
+      <div class="project-body">
+        <h4>연결된 데이터베이스</h4>
+        <div class="tag-list">
+          <span class="tag tag-purple">Contents DB</span>
+          <span class="tag tag-purple">Offer / Product DB</span>
+          <span class="tag tag-purple">라이브 DB (실서비스)</span>
+        </div>
+
+        <h4>어떻게 사용하나요?</h4>
+        <table>
+          <tr><th>요청 예시</th><th>결과</th></tr>
+          <tr><td>"이번 주 Special Deal 매출 뽑아줘"</td><td>Redash용 매출 집계 쿼리 생성</td></tr>
+          <tr><td>"큐레이션 AB 테스트 결과 비교해줘"</td><td>대조군·실험군 비교 쿼리 생성</td></tr>
+          <tr><td>"복귀 유저 플레이 지표 보고 싶어"</td><td>세그먼트별 지표 추출 쿼리 생성</td></tr>
+        </table>
+
+        <div class="highlight-box">
+          💡 <strong>핵심:</strong> 라이브 DB 컬럼명과 테이블 구조를 미리 학습해두었기 때문에, 분석 목적만 말하면 바로 쓸 수 있는 쿼리가 나옵니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- USE CASES -->
+  <section class="wiki-section" id="usecases">
+    <div class="section-eyebrow">활용 가이드</div>
+    <h2 class="section-title">실제로 무엇을 할 수 있나요?</h2>
+    <p class="section-lead">지금 당장 Claude에게 요청할 수 있는 것들입니다.</p>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-eyebrow">문서 작성</div>
+        <h3>📄 "NC_xxx 기획안 만들어줘"</h3>
+        <p>배경·목적·설계·로직 구조로 Confluence에 기획안을 자동 생성합니다. 정승혁 스타일 그대로.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-eyebrow">피드백</div>
+        <h3>👔 "그룹장 입장에서 이 기획 봐줘"</h3>
+        <p>정윤호 그룹장 페르소나로 전환, 현실적인 업무 피드백을 반말로 받아볼 수 있습니다.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-eyebrow">메시지</div>
+        <h3>💬 "이 내용 슬랙 메시지로 써줘"</h3>
+        <p>채널 유형을 알려주면 공식/내부 말투에 맞게 자동으로 메시지를 작성합니다.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-eyebrow">데이터</div>
+        <h3>🗄️ "AB 테스트 결과 쿼리 뽑아줘"</h3>
+        <p>분석 목적을 말하면 라이브 DB에 맞는 SQL 쿼리를 즉시 생성합니다.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-eyebrow">퇴고</div>
+        <h3>✍️ "이 문서 내 스타일로 다듬어줘"</h3>
+        <p>작성한 문서나 메시지를 정승혁 페르소나 기반으로 교정합니다.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-eyebrow">요약</div>
+        <h3>📧 Gmail 일일 요약 자동 수신</h3>
+        <p>매일 Slack에서 수신 메일 요약본을 받아볼 수 있습니다. 별도 요청 불필요.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Active sidebar link on scroll
+  const links = document.querySelectorAll('.sidebar-link[href^="#"]');
+  const sections = [...links].map(l => document.querySelector(l.getAttribute('href')));
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-link[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>
