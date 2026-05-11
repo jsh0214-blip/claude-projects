@@ -15,7 +15,6 @@
       padding: 40px 24px 80px;
     }
 
-    /* ── TOP HEADER ── */
     .header {
       text-align: center;
       margin-bottom: 48px;
@@ -41,44 +40,22 @@
       background-clip: text;
       margin-bottom: 8px;
     }
-    .header p {
-      color: #64748b;
-      font-size: 13px;
-    }
+    .header p { color: #64748b; font-size: 13px; }
 
-    /* ── ROOT NODE ── */
-    .root-section {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0;
-    }
+    .root-section { display: flex; justify-content: center; margin-bottom: 0; }
     .root-box {
       background: linear-gradient(135deg, #1e1b4b, #2d1b69);
       border: 1.5px solid #6366f1;
       border-radius: 16px;
       padding: 20px 40px;
       text-align: center;
-      position: relative;
     }
     .root-box .tag { font-size: 10px; color: #a5b4fc; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
     .root-box h2 { font-size: 16px; font-weight: 700; color: #e0e7ff; }
     .root-box p { font-size: 11px; color: #818cf8; margin-top: 4px; }
 
-    /* ── CONNECTOR ── */
-    .connector-down {
-      display: flex;
-      justify-content: center;
-      margin: 8px 0;
-    }
-    .connector-down svg { display: block; }
+    .connector-down { display: flex; justify-content: center; margin: 8px 0; }
 
-    .connector-row {
-      display: flex;
-      justify-content: center;
-      margin: 0 0 8px;
-    }
-
-    /* ── GRID ── */
     .grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -87,7 +64,6 @@
       margin: 0 auto;
     }
 
-    /* ── CARD ── */
     .card {
       border-radius: 16px;
       border: 1.5px solid transparent;
@@ -96,10 +72,7 @@
       flex-direction: column;
       transition: transform .2s, box-shadow .2s;
     }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,.5);
-    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.5); }
 
     .card-header {
       padding: 16px 16px 12px;
@@ -111,90 +84,53 @@
       width: 36px; height: 36px;
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+      font-size: 18px; flex-shrink: 0;
     }
     .card-title { font-size: 15px; font-weight: 700; }
     .card-subtitle { font-size: 11px; margin-top: 1px; opacity: .6; }
-
     .card-body { padding: 0 14px 14px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
 
-    /* API badge */
     .api-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: 8px;
-      font-size: 11px;
-      font-weight: 600;
-      width: 100%;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px; border-radius: 8px;
+      font-size: 11px; font-weight: 600; width: 100%;
     }
     .api-badge .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
-    /* section block */
-    .section-block {
-      border-radius: 10px;
-      padding: 10px 12px;
-    }
+    .section-block { border-radius: 10px; padding: 10px 12px; }
     .section-block .section-title {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      margin-bottom: 7px;
-      opacity: .55;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: .8px; text-transform: uppercase;
+      margin-bottom: 7px; opacity: .55;
     }
     .item-list { display: flex; flex-direction: column; gap: 5px; }
-    .item {
-      display: flex; align-items: flex-start; gap: 7px;
-      font-size: 12px; line-height: 1.4;
-    }
-    .item-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      margin-top: 5px; flex-shrink: 0;
-    }
+    .item { display: flex; align-items: flex-start; gap: 7px; font-size: 12px; line-height: 1.4; }
+    .item-dot { width: 5px; height: 5px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
 
-    /* persona chip */
     .persona-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      font-size: 12px;
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px; border-radius: 10px; font-size: 12px;
     }
     .persona-avatar {
-      width: 28px; height: 28px;
-      border-radius: 50%;
+      width: 28px; height: 28px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px;
-      flex-shrink: 0;
+      font-size: 13px; flex-shrink: 0;
     }
     .persona-name { font-weight: 700; font-size: 12px; }
     .persona-role { font-size: 10px; opacity: .6; }
 
     .file-tag {
-      display: inline-block;
-      padding: 2px 7px;
-      border-radius: 5px;
-      font-size: 10px;
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-weight: 500;
+      display: inline-block; padding: 2px 7px; border-radius: 5px;
+      font-size: 10px; font-family: 'SF Mono', 'Fira Code', monospace; font-weight: 500;
     }
 
-    /* flow arrow */
     .flow-arrow {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      padding: 5px 10px;
-      border-radius: 7px;
-      border-left: 3px solid;
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; padding: 5px 10px;
+      border-radius: 7px; border-left: 3px solid;
     }
 
-    /* ── CONFLUENCE ── */
+    /* card colors */
     .card.confluence { background: #0d1f2d; border-color: #0ea5e9; }
     .card.confluence .card-header { background: linear-gradient(135deg, #082f49, #0c4a6e); }
     .card.confluence .card-title { color: #38bdf8; }
@@ -206,7 +142,6 @@
     .card.confluence .item-dot { background: #0ea5e9; }
     .card.confluence .file-tag { background: #0c4a6e; color: #7dd3fc; }
 
-    /* ── GMAIL BOT ── */
     .card.gmail { background: #1a0d0d; border-color: #ef4444; }
     .card.gmail .card-header { background: linear-gradient(135deg, #450a0a, #7f1d1d); }
     .card.gmail .card-title { color: #f87171; }
@@ -219,7 +154,6 @@
     .card.gmail .file-tag { background: #7f1d1d; color: #fca5a5; }
     .card.gmail .flow-arrow { background: #200f0f; border-color: #ef4444; color: #fca5a5; }
 
-    /* ── SLACK BOT ── */
     .card.slack { background: #0f1a0d; border-color: #22c55e; }
     .card.slack .card-header { background: linear-gradient(135deg, #052e16, #14532d); }
     .card.slack .card-title { color: #4ade80; }
@@ -233,7 +167,6 @@
     .card.slack .persona-avatar { background: #14532d; color: #4ade80; }
     .card.slack .file-tag { background: #14532d; color: #86efac; }
 
-    /* ── MY INFO ── */
     .card.myinfo { background: #1a100d; border-color: #f97316; }
     .card.myinfo .card-header { background: linear-gradient(135deg, #431407, #7c2d12); }
     .card.myinfo .card-title { color: #fb923c; }
@@ -247,7 +180,6 @@
     .card.myinfo .persona-avatar { background: #7c2d12; color: #fb923c; }
     .card.myinfo .file-tag { background: #7c2d12; color: #fdba74; }
 
-    /* ── QUERY ── */
     .card.query { background: #0f0d1a; border-color: #a855f7; }
     .card.query .card-header { background: linear-gradient(135deg, #2e1065, #4c1d95); }
     .card.query .card-title { color: #c084fc; }
@@ -259,39 +191,7 @@
     .card.query .item-dot { background: #a855f7; }
     .card.query .file-tag { background: #4c1d95; color: #d8b4fe; }
 
-    /* ── DATA FLOW ── */
-    .flow-section {
-      max-width: 1300px;
-      margin: 40px auto 0;
-      background: #111827;
-      border: 1px solid #1f2937;
-      border-radius: 16px;
-      padding: 24px 28px;
-    }
-    .flow-section h3 {
-      font-size: 13px;
-      font-weight: 700;
-      color: #6366f1;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .flow-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .flow-node {
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    .flow-connector { color: #4b5563; font-size: 18px; font-weight: 300; }
-    .flow-desc { font-size: 11px; color: #6b7280; margin-top: 8px; padding-left: 4px; }
-
-    /* ── STATS ── */
+    /* stats */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -300,17 +200,87 @@
       margin: 24px auto 0;
     }
     .stat-card {
-      background: #111827;
-      border: 1px solid #1f2937;
-      border-radius: 12px;
-      padding: 16px 18px;
+      background: #111827; border: 1px solid #1f2937;
+      border-radius: 12px; padding: 16px 18px;
     }
     .stat-number { font-size: 24px; font-weight: 800; }
     .stat-label { font-size: 11px; color: #6b7280; margin-top: 3px; }
 
+    /* summary section */
+    .summary-section {
+      max-width: 1300px;
+      margin: 40px auto 0;
+    }
+    .summary-section h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #e2e8f0;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1f2937;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .summary-card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .summary-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .summary-card-title .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+    }
+    .summary-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #1f2937;
+    }
+    .summary-item:last-child { border-bottom: none; }
+    .summary-item-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+    .summary-item-content { flex: 1; }
+    .summary-item-title { font-size: 13px; font-weight: 700; color: #e2e8f0; margin-bottom: 3px; }
+    .summary-item-desc { font-size: 12px; color: #6b7280; line-height: 1.5; }
+    .tag-done {
+      display: inline-block;
+      background: #052e16; color: #4ade80;
+      font-size: 10px; font-weight: 700;
+      padding: 1px 8px; border-radius: 10px;
+      margin-left: 6px; vertical-align: middle;
+    }
+    .tag-can {
+      display: inline-block;
+      background: #1e1b4b; color: #a5b4fc;
+      font-size: 10px; font-weight: 700;
+      padding: 1px 8px; border-radius: 10px;
+      margin-left: 6px; vertical-align: middle;
+    }
+
     @media (max-width: 1100px) {
       .grid { grid-template-columns: repeat(3, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .summary-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 700px) {
       .grid { grid-template-columns: 1fr 1fr; }
@@ -323,7 +293,7 @@
   <div class="header">
     <div class="header-badge">Claude Code</div>
     <h1>통합 프로젝트 구조도</h1>
-    <p>CLAUDE.md 기반 상위 항목 지정 → 하위 프로젝트 전부 수행</p>
+    <p>CLAUDE.md 기반 상위 항목 지정 → 하위 프로젝트 전부 수행 · 2026.05.11 기준</p>
   </div>
 
   <!-- ROOT -->
@@ -335,15 +305,14 @@
     </div>
   </div>
 
-  <!-- DOWN ARROW -->
   <div class="connector-down">
-    <svg width="2" height="32" viewBox="0 0 2 32"><line x1="1" y1="0" x2="1" y2="32" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/></svg>
+    <svg width="2" height="32"><line x1="1" y1="0" x2="1" y2="32" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/></svg>
   </div>
 
-  <!-- CARDS GRID -->
+  <!-- CARDS -->
   <div class="grid">
 
-    <!-- ── CONFLUENCE ── -->
+    <!-- CONFLUENCE -->
     <div class="card confluence">
       <div class="card-header">
         <div class="card-icon">📄</div>
@@ -353,20 +322,15 @@
         </div>
       </div>
       <div class="card-body">
-        <div class="api-badge">
-          <span class="dot"></span>
-          Confluence REST API
-        </div>
-
+        <div class="api-badge"><span class="dot"></span>Confluence REST API</div>
         <div class="section-block">
           <div class="section-title">권한</div>
           <div class="item-list">
             <div class="item"><div class="item-dot"></div>읽기 및 쓰기 권한 확보</div>
-            <div class="item"><div class="item-dot"></div>jsh0214@afewgoodsoft.com 계정</div>
+            <div class="item"><div class="item-dot"></div>jsh0214@afewgoodsoft.com</div>
             <div class="item"><div class="item-dot"></div>studio-g.atlassian.net</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">주요 기능</div>
           <div class="item-list">
@@ -376,7 +340,6 @@
             <div class="item"><div class="item-dot"></div>NC 시리즈 문서 구조 자동화</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">주요 스페이스</div>
           <div class="item-list">
@@ -385,17 +348,16 @@
             <div class="item"><div class="item-dot"></div>DUC 메타 기획 본부</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">파일</div>
           <span class="file-tag">page_payload.json</span>&nbsp;
-          <span class="file-tag">flowchart/index.html</span><br/><br/>
-          <span class="file-tag">penalty-ui/index.html</span>
+          <span class="file-tag">flowchart/</span><br/><br/>
+          <span class="file-tag">penalty-ui/</span>
         </div>
       </div>
     </div>
 
-    <!-- ── GMAIL BOT ── -->
+    <!-- GMAIL BOT -->
     <div class="card gmail">
       <div class="card-header">
         <div class="card-icon">📧</div>
@@ -405,34 +367,25 @@
         </div>
       </div>
       <div class="card-body">
-        <div class="api-badge">
-          <span class="dot"></span>
-          Gmail API (OAuth2)
-        </div>
-
+        <div class="api-badge"><span class="dot"></span>Gmail API (OAuth2)</div>
         <div class="section-block">
           <div class="section-title">권한</div>
           <div class="item-list">
-            <div class="item"><div class="item-dot"></div>Google OAuth2 인증</div>
+            <div class="item"><div class="item-dot"></div>Google OAuth2 인증 완료</div>
             <div class="item"><div class="item-dot"></div>메일 읽기 스코프</div>
             <div class="item"><div class="item-dot"></div>credentials.json 보관</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">파이프라인</div>
           <div class="item-list">
             <div class="item"><div class="item-dot"></div>Gmail 수신 메일 수집</div>
             <div class="item"><div class="item-dot"></div>Claude API 한국어 요약</div>
-            <div class="item"><div class="item-dot"></div>Slack 채널 전송</div>
+            <div class="item"><div class="item-dot"></div>Slack 채널 자동 전송</div>
             <div class="item"><div class="item-dot"></div>Windows 스케줄러 자동 실행</div>
           </div>
         </div>
-
-        <div class="flow-arrow" style="border-color:#ef4444">
-          ← Slack Bot에서 채널 ID 공유
-        </div>
-
+        <div class="flow-arrow" style="border-color:#ef4444">← Slack Bot에서 채널 ID 공유</div>
         <div class="section-block">
           <div class="section-title">파일</div>
           <span class="file-tag">main.py</span>&nbsp;
@@ -443,7 +396,7 @@
       </div>
     </div>
 
-    <!-- ── SLACK BOT ── -->
+    <!-- SLACK BOT -->
     <div class="card slack">
       <div class="card-header">
         <div class="card-icon">💬</div>
@@ -453,11 +406,7 @@
         </div>
       </div>
       <div class="card-body">
-        <div class="api-badge">
-          <span class="dot"></span>
-          Slack Web API (xoxb-)
-        </div>
-
+        <div class="api-badge"><span class="dot"></span>Slack Web API (xoxb-)</div>
         <div class="section-block">
           <div class="section-title">권한</div>
           <div class="item-list">
@@ -466,17 +415,15 @@
             <div class="item"><div class="item-dot"></div>chat:write 스코프</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">주요 기능</div>
           <div class="item-list">
-            <div class="item"><div class="item-dot"></div>일일 요약 메시지 Slack 발송</div>
+            <div class="item"><div class="item-dot"></div>일일 요약 메시지 자동 발송</div>
             <div class="item"><div class="item-dot"></div>채널 내 메시지 수집</div>
             <div class="item"><div class="item-dot"></div>채널 유형별 말투 자동 전환</div>
             <div class="item"><div class="item-dot"></div>특정 인물 페르소나 생성</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">보유 페르소나</div>
           <div class="persona-chip">
@@ -487,7 +434,6 @@
             </div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">파일</div>
           <span class="file-tag">daily_summary.py</span><br/><br/>
@@ -496,7 +442,7 @@
       </div>
     </div>
 
-    <!-- ── MY INFO ── -->
+    <!-- MY INFO -->
     <div class="card myinfo">
       <div class="card-header">
         <div class="card-icon">🧠</div>
@@ -506,21 +452,16 @@
         </div>
       </div>
       <div class="card-body">
-        <div class="api-badge">
-          <span class="dot"></span>
-          Confluence + Slack + Gmail 연동
-        </div>
-
+        <div class="api-badge"><span class="dot"></span>Confluence + Slack + Gmail 연동</div>
         <div class="section-block">
           <div class="section-title">데이터 수집</div>
           <div class="item-list">
             <div class="item"><div class="item-dot"></div>Confluence 문서 50개 분석</div>
             <div class="item"><div class="item-dot"></div>Slack 채팅 83,560건 수집</div>
-            <div class="item"><div class="item-dot"></div>7개 채널, 180일치 데이터</div>
+            <div class="item"><div class="item-dot"></div>7개 채널 · 180일치 데이터</div>
             <div class="item"><div class="item-dot"></div>162개 메시지 패턴 분석</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">분석 항목</div>
           <div class="item-list">
@@ -530,7 +471,6 @@
             <div class="item"><div class="item-dot"></div>자주 쓰는 표현 수집</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">산출물</div>
           <div class="item-list">
@@ -539,7 +479,6 @@
             <div class="item"><div class="item-dot"></div>Confluence 제안서 작성 지원</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">페르소나 프로필</div>
           <div class="persona-chip">
@@ -553,7 +492,7 @@
       </div>
     </div>
 
-    <!-- ── QUERY ── -->
+    <!-- QUERY -->
     <div class="card query">
       <div class="card-header">
         <div class="card-icon">🗄️</div>
@@ -563,11 +502,7 @@
         </div>
       </div>
       <div class="card-body">
-        <div class="api-badge">
-          <span class="dot"></span>
-          SQL Workbench · Redash
-        </div>
-
+        <div class="api-badge"><span class="dot"></span>SQL Workbench · Redash</div>
         <div class="section-block">
           <div class="section-title">연결 DB</div>
           <div class="item-list">
@@ -576,7 +511,6 @@
             <div class="item"><div class="item-dot"></div>라이브 DB (실서비스)</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">학습 대상</div>
           <div class="item-list">
@@ -585,7 +519,6 @@
             <div class="item"><div class="item-dot"></div>Redash 페이지 파악</div>
           </div>
         </div>
-
         <div class="section-block">
           <div class="section-title">주요 기능</div>
           <div class="item-list">
@@ -595,9 +528,8 @@
             <div class="item"><div class="item-dot"></div>AB 테스트 결과 데이터 추출</div>
           </div>
         </div>
-
         <div class="section-block">
-          <div class="section-title">담당자</div>
+          <div class="section-title">담당 도메인</div>
           <div class="item-list">
             <div class="item"><div class="item-dot"></div>큐레이션 / 오퍼 / 콘텐츠 기획</div>
             <div class="item"><div class="item-dot"></div>Doubleu Casino (DUC)</div>
@@ -628,25 +560,124 @@
     </div>
   </div>
 
-  <!-- DATA FLOW -->
-  <div class="flow-section">
-    <h3>데이터 흐름</h3>
-    <div class="flow-row">
-      <div class="flow-node" style="background:#0c4a6e;color:#38bdf8">Confluence 문서</div>
-      <div class="flow-connector">→</div>
-      <div class="flow-node" style="background:#1e1065;color:#c084fc">Query DB 분석</div>
-      <div class="flow-connector">→</div>
-      <div class="flow-node" style="background:#14532d;color:#4ade80">Slack Bot 메시지</div>
-      <div class="flow-connector">→</div>
-      <div class="flow-node" style="background:#7f1d1d;color:#f87171">Gmail Bot 요약</div>
-      <div class="flow-connector">→</div>
-      <div class="flow-node" style="background:#431407;color:#fb923c">My Info 퇴고</div>
-      <div class="flow-connector">→</div>
-      <div class="flow-node" style="background:#1f2937;color:#9ca3af">최종 발송</div>
+  <!-- SUMMARY -->
+  <div class="summary-section">
+    <h2>무엇을 했고, 무엇을 할 수 있는가</h2>
+    <div class="summary-grid">
+
+      <!-- 한 것 -->
+      <div class="summary-card">
+        <div class="summary-card-title">
+          ✅ <span style="color:#4ade80">완료된 것들</span>
+          <span class="badge" style="background:#052e16;color:#4ade80">DONE</span>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#0c4a6e">📄</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">Confluence API 연동 <span class="tag-done">완료</span></div>
+            <div class="summary-item-desc">studio-g.atlassian.net 계정으로 읽기·쓰기 권한 확보. 페이지 자동 생성·수정, NC 시리즈 문서 구조 자동화, 플로우차트·Penalty UI 기획 문서 산출.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#7f1d1d">📧</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">Gmail Bot 구축 <span class="tag-done">완료</span></div>
+            <div class="summary-item-desc">Google OAuth2 인증 완료. Gmail 수신 메일 → Claude API 한국어 요약 → Slack 채널 자동 전송 파이프라인 구성. Windows 스케줄러로 매일 자동 실행.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#14532d">💬</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">Slack Bot 구축 <span class="tag-done">완료</span></div>
+            <div class="summary-item-desc">Slack API 읽기·쓰기 권한 확보. 일일 요약 자동 발송, 채널 내 메시지 수집 구현. 정윤호 그룹장 페르소나 1개 구축 완료.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#7c2d12">🧠</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">정승혁 페르소나 구축 <span class="tag-done">완료</span></div>
+            <div class="summary-item-desc">Confluence 문서 50개 + Slack 채팅 83,560건(7채널·180일) 분석. 문서 작성 패턴, 채널별 말투 전환, 업무 행동 패턴을 학습해 페르소나 형성.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#4c1d95">🗄️</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">DB 구조 학습 <span class="tag-done">완료</span></div>
+            <div class="summary-item-desc">Contents DB · Offer/Product DB · 라이브 DB 컬럼명 학습. SQL Workbench 및 Redash 페이지 구조 파악 완료.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#1e3a5f">🌐</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">GitHub Pages 배포 <span class="tag-done">완료</span></div>
+            <div class="summary-item-desc">github.com/jsh0214-blip/claude-projects 저장소 생성. 프로젝트별 data/ 하위 폴더 구성. 이 페이지가 jsh0214-blip.github.io/claude-projects/ 로 공개 배포됨.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 할 수 있는 것 -->
+      <div class="summary-card">
+        <div class="summary-card-title">
+          ⚡ <span style="color:#a5b4fc">할 수 있는 것들</span>
+          <span class="badge" style="background:#1e1b4b;color:#a5b4fc">CAN DO</span>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#0c4a6e">📝</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">Confluence 문서 자동 생성 <span class="tag-can">가능</span></div>
+            <div class="summary-item-desc">기획안 초안, NC 시리즈 문서 폴더 구조, UI/UX 설계서, AB 테스트 문서를 정승혁 스타일 그대로 자동으로 Confluence에 생성.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#7f1d1d">📬</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">Gmail 일일 요약 수신 <span class="tag-can">가능</span></div>
+            <div class="summary-item-desc">매일 지정 시간에 Gmail을 자동 수집해 Claude가 한국어로 요약, Slack 채널로 전송. 중요 메일 놓치지 않음.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#14532d">📢</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">Slack 채널 자동 발송 <span class="tag-can">가능</span></div>
+            <div class="summary-item-desc">공식 채널은 구조적 경어체, 내부 채널은 반말 캐주얼로 자동 전환. 이슈 보고, 업무 공지, 완료 보고 메시지 자동 생성 및 발송.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#14532d">👔</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">정윤호 페르소나 피드백 <span class="tag-can">가능</span></div>
+            <div class="summary-item-desc">기획 검토·업무 피드백 요청 시 정윤호 그룹장 말투와 사고방식으로 응답. "ㅇㅇ 그냥 진행해" 수준의 현실적인 피드백 제공.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#7c2d12">✍️</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">정승혁 스타일 문서·메시지 퇴고 <span class="tag-can">가능</span></div>
+            <div class="summary-item-desc">작성한 Confluence 문서나 Slack 메시지를 정승혁 특유의 구조화 방식, 표현 패턴으로 교정. 채널 유형에 맞는 말투로 자동 변환.</div>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-item-icon" style="background:#4c1d95">🔍</div>
+          <div class="summary-item-content">
+            <div class="summary-item-title">목적별 SQL 쿼리 자동 도출 <span class="tag-can">가능</span></div>
+            <div class="summary-item-desc">분석 목적(매출 지표, AB 테스트 결과, 큐레이션 성과 등)을 말하면 라이브 DB 구조 기반으로 Redash·SQL Workbench용 쿼리 자동 생성.</div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="flow-desc">My Info의 정승혁 페르소나 → Slack 메시지 말투 교정 · Confluence 제안서 작성 보조</div>
-    <div class="flow-desc">Query 결과 → Slack Bot 일일 요약에 지표 데이터 삽입</div>
-    <div class="flow-desc">Slack Bot 채널 ID → Gmail Bot 전송 대상 채널 공유</div>
   </div>
 
 </body>
